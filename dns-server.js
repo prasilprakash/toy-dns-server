@@ -3,8 +3,8 @@ const dnsPacket = require('dns-packet');
 const server = dgram.createSocket('udp4');
 const handler = require('./modules/handler');
 
-server.bind(5354, '127.0.0.1', () => {
-    console.log('DNS server listening on 127.0.0.1:5354');
+server.bind(5354, '0.0.0.0', () => {
+    console.log('DNS server listening on port 5354');
 });
 
 server.on('message', (msg, rinfo) => {

@@ -4,8 +4,9 @@ A simple DNS server (_like dns.toys_) written in JavaScript
 ## How to run?
 
 ````
-npm install
-node dns-server.js
-dig coin @127.0.0.1 -p 5354
-dig 42km-mi @127.0.0.1 -p 5354
+docker build -t dns-server .
+docker run -d -p 53:5354/udp dns-server
+dig coin @localhost
+dig 42km-mi @localhost
+dig 42mi-km @localhost
 ````

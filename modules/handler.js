@@ -1,8 +1,8 @@
 const response = require('./response');
-const coinToss = require('./coin-toss');
-const noSupport = require('./no-support');
-const distance = require('./distance');
 const parser = require('./parser');
+const coinToss = require('./coin-toss');
+const distance = require('./distance');
+const noSupport = require('./no-support');
 
 handleDNSMessage = (decoded) => {
     let finalResponse = response.defaultResponse(decoded);
