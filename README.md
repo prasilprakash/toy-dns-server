@@ -9,13 +9,34 @@ As a node app -
 node dns-server.js --ip '127.0.0.1' --port '53'
 ````
 
-May want to use sudo to use port 53. If you don't want to, try others -
+May want to use sudo to use port 53. If you don't want to do that, try others -
 
 ````
 node dns-server.js --ip '127.0.0.1' --port '5354'
 ````
 
+As a containerized app -
+
+````
+docker build -t dns-server .
+docker run -e PORT=53 -p 53:53/udp dns-server
+````
+
 ## How to use?
+
+If you're running locally and want to use the fortune cookie thing, you may want to install that first -
+
+````
+apt-get install fortune
+````
+
+To use dig you'll have to install dnsutils -
+
+````
+apt-get install dnsutils
+````
+
+Use dig to test the app -
 
 ```
 dig coin @localhost
