@@ -11,6 +11,6 @@
   "description": "",
   "dependencies": {
     "dns-packet": "^5.6.1",
-    "dns2": "^2.1.0"
+    "minimist": "^1.2.8"
   }
 }

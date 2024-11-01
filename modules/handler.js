@@ -1,28 +1,28 @@
-const response = require('./response');
 const parser = require('./parser');
 const coinToss = require('./coin-toss');
 const distance = require('./distance');
+const fortune = require('./fortune');
 const noSupport = require('./no-support');
 
 handleDNSMessage = (decoded) => {
-    let finalResponse = response.defaultResponse(decoded);
-    const parsed = parser.parse(decoded.questions[0].name);
-    finalResponse.answers[0].data = constructResponse(parsed);
-    return finalResponse;
+    return constructResponse(decoded);
 }
 
-constructResponse = (parsed) => {
+constructResponse = (decoded) => {
+    const parsed = parser.parse(decoded.questions[0].name);
     const { data, query } = parsed;
 
     switch (query) {
         case 'coin':
-            return coinToss.coinResponse();
+            return coinToss.coinTossResponse(data, decoded);
         case 'km-mi':
-            return String(distance.kilometersToMiles(data));
+            return distance.kilometersToMiles(data, decoded);
         case 'mi-km':
-            return String(distance.milesToKilometers(data));
+            return distance.milesToKilometers(data, decoded);
+        case 'fortune':
+            return fortune.fortuneResponse(decoded);
         default:
-            return noSupport.noSupportResponse();
+            return noSupport.noSupportResponse(decoded);
     }
 }
 

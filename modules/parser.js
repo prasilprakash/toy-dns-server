@@ -10,8 +10,12 @@ parse = (name) => {
         const splitName = name.split('mi-km');
         response.data = splitName[0];
         response.query = 'mi-km';
-    } else {
-        response.query = name;
+    } else if (name.includes('coin')) {
+        const splitName = name.split('.');
+        response.data = splitName.length > 1 ? splitName[0] : 1;
+        response.query = splitName.length > 1 ? splitName[1] : splitName[0];
+    } else if (name.includes('fortune')) {
+        response.query = 'fortune';
     }
 
     return response;
